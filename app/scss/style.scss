@@ -1,0 +1,721 @@
+@import "./option/color";
+@import "./option/font";
+@import "./option/animate";
+@import "./option/mixin";
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+    background: #000;
+}
+
+* {
+    box-sizing: border-box;
+    outline: none;
+    border: 0;
+    text-decoration: none;
+    font-family: sans-serif;
+    color: $black;
+    line-height: 1.1;
+    margin: 0;
+    padding: 0;
+}
+
+.title {
+    @include font(Archivo, 70px, $white);
+    max-width: 600px;
+}
+
+.titleCenter {
+    @include font(Archivo, 70px, $white);
+    text-align: center;
+    text-transform: capitalize;
+}
+
+//! root
+#root {
+    @include grid(120px 1fr 120px, 40px 1fr);
+    @include animate;
+    background: $black;
+    width: 100%;
+    height: 100%;
+    padding: 0 15px;
+    padding-bottom: 15px;
+    position: absolute;
+    overflow: hidden;
+}
+
+
+//! menu
+#menu {
+    display: none;
+
+    &.active {
+        display: block;
+        z-index: 10000;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+
+        .header {
+            height: 50px;
+        }
+
+        ul {
+            float: right;
+            position: relative;
+            right: 0;
+            top: calc(50% - 50px);
+            transform: translateY(-50%);
+            list-style-type: none;
+            @include grid(1fr, repeat(5, auto));
+            align-content: center;
+            grid-gap: 20px;
+
+            li {
+                @include font(Poppins-ExtraBold, 30px, $white);
+                text-align: right;
+                text-transform: uppercase;
+                cursor: pointer;
+                display: block;
+
+                &.active {
+                    text-decoration: line-through;
+                    text-decoration-color: $blue;
+                    text-decoration-thickness: 8px;
+                }
+            }
+        }
+    }
+}
+
+//! header
+.header {
+    height: 100%;
+    width: 100%;
+    grid-column: span 3;
+    @include grid(auto auto, 20px);
+    align-content: center;
+    justify-content: space-between;
+    position: relative;
+
+    .logo {
+        height: 100%;
+        @include grid(auto auto, 100%);
+        grid-gap: 5px;
+        align-items: center;
+
+        h1 {
+            @include font(Poppins-Bold, 15px, $white);
+            text-transform: uppercase;
+        }
+    }
+
+    .hire {
+        width: 90px;
+        height: 20px;
+        position: absolute;
+        left: 50%;
+        margin: 10px 0;
+        transform: translateX(-50%);
+        background: $blue;
+        line-height: 20px;
+        text-align: center;
+        @include font(Poppins-Bold, 13px, $white);
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: all .2s linear;
+
+        &:hover {
+            color: $blue;
+            background: $white;
+        }
+    }
+
+    .menu {
+        width: 25px;
+        height: 100%;
+        @include grid(1fr, repeat(3, 4px));
+        align-content: space-between;
+        cursor: pointer;
+
+        &:hover {
+            div {
+                background: $white;
+            }
+        }
+
+        div {
+            height: 100%;
+            width: 100%;
+            background: $lightGrey;
+            border-radius: 25px;
+            margin: auto;
+            @include animate;
+            transition: all .2s linear;
+
+            &.menu2 {
+                width: 50%;
+            }
+        }
+    }
+}
+
+//! aside
+#aside {
+    display: grid;
+    align-items: center;
+    padding-left: 30px;
+
+    #scroller {
+        height: auto;
+        width: 3px;
+        display: grid;
+        grid-auto-rows: 30px;
+
+        div {
+            width: 100%;
+            height: 100%;
+            background: $grey;
+            position: relative;
+            cursor: pointer;
+            border-bottom: 3px solid $white;
+
+            &:last-child {
+                border: none;
+            }
+
+            &.active {
+                border-color: $blue;
+            }
+        }
+
+        @for $i from 1 to 6 {
+            div[value="#{$i}"] {
+                &:before {
+                    width: auto;
+                    content: "0#{$i}";
+                    display: none;
+                    @include font(Poppins-Light, 14px, $white);
+                    position: absolute;
+                    right: 0;
+                    bottom: -45%;
+                    transform: translateX(-10px);
+                }
+
+                &:after {
+                    width: auto;
+                    content: "0#{$i}";
+                    display: block;
+                    @include font(Poppins-Light, 14px, $lightGrey);
+                    position: absolute;
+                    bottom: -45%;
+                    left: 0;
+                    transform: translateX(10px);
+                }
+            }
+        }
+
+        $count: 1;
+
+        @each $active in "HOME",
+        "WORKS",
+        "ABOUT",
+        "CONTACT",
+        "HIRE US" {
+            div[value="#{$count}"].active:before {
+                display: block;
+            }
+
+            div[value="#{$count}"].active:after {
+                content: $active;
+                color: $white;
+                white-space: nowrap;
+            }
+
+            $count: $count+1;
+        }
+    }
+
+    #asideLeft {
+        width: 100%;
+        height: 100%;
+        padding: 20px 0;
+
+        div {
+            width: 100%;
+            @include font(Poppins-Light, 13px, $white);
+
+            &:last-child {
+                border: none;
+            }
+        }
+    }
+}
+
+//! main
+#main {
+    height: 100%;
+    width: 100%;
+    position: relative;
+
+    &>div {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        opacity: 0;
+        z-index: -1;
+        @include animate;
+
+        &#home {
+            opacity: 1;
+            z-index: 1000;
+        }
+    }
+
+}
+
+//! home
+#home {
+    @include grid(1fr, 1fr auto);
+
+    .top {
+        height: 100%;
+        @include background("../img/home/home.png");
+        background-size: contain;
+        background-position: bottom right;
+        border-bottom: 1px solid rgba($grey, .5);
+
+        .hire {
+            width: 90px;
+            display: inline-block;
+            height: 20px;
+            margin: 30px 0;
+            background: $blue;
+            cursor: pointer;
+            position: relative;
+
+            span {
+                line-height: 20px;
+                position: absolute;
+                left: -10px;
+                @include font(Poppins-Bold, 13px, $white);
+                text-transform: uppercase;
+                transition: all .2s linear;
+
+                svg {
+                    height: 20px;
+                    float: right;
+                    margin: 0 10px;
+                    fill: $white;
+                }
+            }
+
+            &:hover {
+                background: $white;
+
+                span {
+                    color: $blue;
+
+                    svg {
+                        fill: blue;
+                    }
+                }
+            }
+        }
+    }
+
+    .bottom {
+        width: 100%;
+        height: 100%;
+        padding: 30px 0;
+        @include grid(repeat(3, 1fr), auto);
+        grid-gap: 30px;
+        align-content: center;
+        position: relative;
+
+        .active {
+            transition: .8s all linear;
+            display: block;
+            width: 30px;
+            height: 3px;
+            position: absolute;
+            background: $blue;
+            top: -2px;
+            left: 50px;
+        }
+
+        section {
+            height: auto;
+            @include grid(1fr, auto 1fr);
+            grid-gap: 15px;
+            cursor: pointer;
+
+            &:hover {
+
+                h3,
+                p {
+                    color: $white;
+                }
+            }
+
+            h3 {
+                @include font(Poppins-Bold, 24px, $grey);
+            }
+
+            p {
+                @include font(Poppins-Light, 16px, $grey);
+            }
+        }
+    }
+}
+
+//! works
+#works {
+    @include grid(1fr, auto 1fr);
+    align-items: center;
+
+    section {
+        width: 100%;
+        height: 100%;
+        @include grid(20px auto 20px, auto);
+        grid-gap: 30px;
+        align-items: center;
+
+        .left,
+        .right {
+            width: 100%;
+            background: transparent;
+            cursor: pointer;
+        }
+
+        .middle {
+            width: 100%;
+            height: auto;
+            display: flex;
+            align-content: center;
+            justify-content: center;
+
+            div {
+                width: 100%;
+                display: none;
+                align-content: center;
+                align-self: center;
+
+                &.active0,
+                &.active1,
+                &.active2 {
+                    display: flex;
+                    flex-direction: column;
+                }
+
+                &.active0 {
+                    order: 1;
+                }
+
+                &.active1 {
+                    order: 2;
+
+                    p {
+                        display: block;
+                    }
+
+                    img {
+                        width: 250px;
+                        height: 250px;
+                    }
+                }
+
+                &.active2 {
+                    order: 3;
+                }
+
+                h3 {
+                    @include font(Poppins-Regular, 16px, $white);
+                    text-align: center;
+                    margin: 10px 0;
+                }
+
+                p {
+                    max-width: 200px;
+                    margin: 0 auto;
+                    @include font(Poppins-Light, 13px, $white);
+                    text-align: center;
+                    display: none;
+                }
+
+                img {
+                    display: block;
+                    width: 200px;
+                    height: 200px;
+                    margin: 0 auto;
+                    border-radius: 50%;
+                }
+            }
+        }
+    }
+}
+
+//! About
+#about {
+    @include grid(1fr, 1fr auto);
+    align-content: space-between;
+
+    .top {
+        a {
+            margin: 30px 0;
+            text-transform: uppercase;
+            @include font(Poppins-Bold, 16px, $white);
+            float: left;
+
+            &:hover {
+                img {
+                    margin-left: 20px;
+                }
+            }
+        }
+
+        img {
+            width: 20px;
+            float: right;
+            transition: 1s;
+            margin-left: 10px;
+        }
+    }
+
+    .bottom {
+        height: 100%;
+        padding: 20px 0;
+        @include grid(repeat(3, 200px), 100px);
+        align-content: center;
+        grid-gap: 30px;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+
+        section {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            background: $blue;
+
+            img {
+                width: 90%;
+                height: 80%;
+                margin: 5%;
+                object-fit: cover;
+                object-position: center;
+            }
+
+            span {
+                @include font(Poppins-Regular, 15px, $white);
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                transform: translate(50%, 50%);
+            }
+        }
+    }
+}
+
+//! Contact 
+#contact {
+    @include grid(1fr, auto auto);
+    align-content: space-between;
+
+    .content {
+        width: 100%;
+        height: 100%;
+        display: grid;
+        grid-template-rows: 1fr;
+        justify-content: end;
+    }
+
+    section {
+        max-width: 450px;
+        padding: 15px 50px;
+        height: auto;
+        margin: 0 auto;
+        background: $darkBlack;
+        border-radius: 5px;
+        box-shadow: 0 0 5px $grey;
+        @include grid(1fr, repeat(3, 40px) repeat(3, 100px));
+        align-items: center;
+        justify-items: center;
+
+        h3 {
+            @include font(Poppins-Light, 17px, $white);
+            text-align: center;
+        }
+
+        h4 {
+            @include font(Poppins-Light, 15px, $white);
+            text-align: center;
+        }
+
+        h5 {
+            @include font(Poppins-Light, 14px, $white);
+            text-align: center;
+        }
+
+        button {
+            width: 200px;
+            height: 50px;
+            cursor: pointer;
+            text-transform: uppercase;
+            border-radius: 10px;
+            transition: .2s;
+            @include font(Poppins-Bold, 14px, $black);
+
+            &:nth-child(4) {
+                background: $lightBlue;
+            }
+
+            &:nth-child(5) {
+                background: $pink;
+            }
+
+            &:nth-child(6) {
+                background: $blue;
+            }
+
+            &:hover {
+                color: $white;
+                transform: scale(1.02);
+            }
+        }
+    }
+}
+
+//! Hire
+#hire {
+    @include grid(minmax(1fr, 600px), auto auto);
+    grid-gap: 30px;
+    justify-content: center;
+    align-content: center;
+
+    form.box {
+        @include grid(1fr 1fr, 1fr 1fr);
+
+        input {
+            height: 30px;
+            background: transparent;
+            border-bottom: 2px solid $white;
+            @include font(Poppins-Light, 16px, $white);
+
+            &#submit {
+                border: none;
+                grid-row: 2;
+                grid-column: 1/2 span;
+                background: $blue;
+                cursor: pointer;
+            }
+        }
+    }
+
+    .box {
+        width: 100%;
+        height: 30px;
+        margin: 30px 0;
+        display: grid;
+        grid-gap: 30px;
+        grid-auto-flow: column;
+        grid-auto-columns: 150px;
+        justify-content: center;
+
+        span {
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+            border: 2px solid $white;
+            text-align: center;
+            line-height: 30px;
+            position: relative;
+            @include font(Poppins-Light, 17px, $white);
+
+            &[selected="true"]::before,
+            &[selected="false"]::before {
+                content: '';
+                display: block;
+                height: 100%;
+                width: 100%;
+                margin: 0 auto;
+                position: absolute;
+                top: 0;
+                left: 50%;
+                transform: translateX(-50%);
+                z-index: -1;
+                @include animate(selected);
+            }
+
+            &[selected="false"]::before {
+                animation-name: deselect;
+            }
+        }
+    }
+}
+
+//! media
+@media(max-width: 900px) {
+    #root {
+        @include grid(1fr, 40px 1fr);
+        grid-gap: 0;
+    }
+
+    .title,
+    .titleCenter {
+        font-size: 45px;
+        width: 100%;
+        margin: 0;
+        position: static;
+    }
+
+    #aside {
+        display: none;
+    }
+
+    #home {
+        display: block !important;
+
+        .top {
+            height: 100%;
+        }
+
+        .bottom {
+            display: none;
+        }
+    }
+
+    #about .bottom {
+        overflow-x: scroll;
+    }
+
+    #contact .content {
+        justify-content: center;
+    }
+
+    #hire {
+        .box {
+            height: auto;
+            display: block !important;
+            margin: 0;
+
+            span,
+            input {
+                width: 100%;
+                display: block;
+                margin: 10px 0;
+            }
+        }
+    }
+
+    #works .active0,
+    #works .active2 {
+        display: none !important;
+    }
+}

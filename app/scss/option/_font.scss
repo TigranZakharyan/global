@@ -1,0 +1,10 @@
+@each $font in Bold,ExtraBold,Light,Regular{
+    @font-face{
+        font-family: "Poppins-#{$font}";
+        src: url("../font/Poppins-#{$font}.ttf");
+    }
+}
+@font-face{
+    font-family: Archivo;
+    src: url("../font/Archivo.ttf");
+}

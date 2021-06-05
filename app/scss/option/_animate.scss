@@ -1,0 +1,178 @@
+@keyframes menuAnim1{
+	0%{
+		width: 100%;
+	}
+	25%{
+		width: 50%;
+	}
+	50%{
+		width: 0;
+	}
+	75%{
+		width: 100%;
+	}
+	100%{
+		width: 50%;
+	}
+}
+@keyframes menuAnim2{
+	0%{
+		width: 50%;
+	}
+	25%{
+		width: 100%;
+	}
+	50%{
+		width: 0;
+	}
+	75%{
+		width: 50%;
+	}
+	100%{
+		width: 100%;
+	}
+}
+@keyframes menuAnim3{
+	0%{
+		width: 100%;
+	}
+	25%{
+		width: 50%;
+	}
+	50%{
+		width: 0;
+	}
+	75%{
+		width: 100%;
+	}
+	100%{
+		width: 50%;
+	}
+}
+@keyframes menuAnimClose3{
+	0%{
+		width: 50%;
+	}
+	25%{
+		width: 100%;
+	}
+	50%{
+		width: 0;
+	}
+	75%{
+		width: 50%;
+	}
+	100%{
+		width: 100%;
+	}
+}
+@keyframes menuAnimClose2{
+	0%{
+		width: 100%;
+	}
+	25%{
+		width: 50%;
+	}
+	50%{
+		width: 0;
+	}
+	75%{
+		width: 100%;
+	}
+	100%{
+		width: 50%;
+	}
+}
+@keyframes menuAnimClose1{
+	0%{
+		width: 50%;
+	}
+	25%{
+		width: 100%;
+	}
+	50%{
+		width: 0;
+	}
+	75%{
+		width: 50%;
+	}
+	100%{
+		width: 100%;
+	}
+}
+@keyframes homeBottom{
+	from{
+		grid-template-rows: 1fr auto;
+	}
+	to{
+		grid-template-rows: 1fr 200px;
+	}
+}
+
+
+@keyframes contentDown{
+	from{
+		opacity: 1;
+		z-index: 1000;
+		transform: translateY(0);
+	}
+	to{
+		opacity: 0;
+		z-index: -1;
+		transform: translateY(100%);
+	}
+}
+@keyframes contentUp{
+	from{
+		opacity: 0;
+		z-index: -1;
+		transform: translateY(-100%);
+	}
+	to{
+		opacity: 1;
+		z-index: 1000;
+		transform: translateY(0);
+	}
+}
+
+@keyframes menuOpen{
+	to{
+		transform: scale(0.5) perspective(2000px) rotateY(40deg) translateX(-30%);
+		border: 10px solid $blue;
+		box-shadow: 0 0 5px $white;
+	}
+}
+@keyframes menuClose{
+	from{
+		transform: scale(0.5) perspective(2000px) rotateY(40deg) translateX(-30%);
+		border: 10px solid $blue;
+		box-shadow: 0 0 5px $white;	
+	}
+	to{
+		transform: scale(1) perspective(0) rotateY(0) translateX(0);
+		border: none;
+		box-shadow: none;
+	}
+}
+@keyframes selected{
+	from{
+		width: 0;
+		background: none;
+		border-radius: 50px;
+	}
+	to{
+		width: 100%;
+		background: $blue;
+	}
+}
+@keyframes deselect{
+	from{
+		width: 100%;
+		background: $blue;
+	}
+	to{
+		width: 0;
+		background: none;
+		border-radius: 50px;
+	}
+}

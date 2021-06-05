@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- TODO -->
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+	<link rel="stylesheet" href="css/style.min.css">
+	<link rel="icon" href="img/root/favicon.ico">
+	<title>Global</title>
+</head>
+
+<body>
+	<div id="menu">
+		<div class="header">
+			<div class="logo">
+				<img src="img/root/logo.svg" alt="">
+				<h1>Global</h1>
+			</div>
+			<div class="menu" active="false">
+				<div class="menu1"></div>
+				<div class="menu2"></div>
+				<div class="menu3"></div>
+			</div>
+		</div>
+		<ul>
+			<li class="active" value="1">home</li>
+			<li value="2">works</li>
+			<li value="3">about</li>
+			<li value="4">contact</li>
+			<li value="5">hire us</li>
+		</ul>
+	</div>
+	<div id="root">
+		<!-- !HEADER -->
+		<div class="header">
+			<div class="logo">
+				<img src="img/root/logo.svg" alt="">
+				<h1>Global</h1>
+			</div>
+			<div class="hire">hire us</div>
+			<div class="menu" active="false">
+				<div class="menu1"></div>
+				<div class="menu2"></div>
+				<div class="menu3"></div>
+			</div>
+		</div>
+		<!-- !ASIDE -->
+		<aside id="aside">
+			<div id="scroller"></div>
+		</aside>
+		<main id="main">
+			<!-- !HOME -->
+			<div id="home" class="active">
+				<div class="top">
+					<h2 class="title">Your next interactive experience</h2>
+					<div class="hire"><span>hire us</span></div>
+				</div>
+				<div class="bottom">
+					<div class="active"></div>
+					<section>
+						<h3>Section 1</h3>
+						<p>s1 Lorem ipsum dolor sit, amet consectetur adipisicing elit. Assumenda, alias.</p>
+					</section>
+					<section>
+						<h3>Section 2</h3>
+						<p>s2 Lorem ipsum dolor sit, amet consectetur adipisicing elit. Assumenda, alias.</p>
+					</section>
+					<section>
+						<h3>Section 3</h3>
+						<p>s3 Lorem ipsum dolor sit, amet consectetur adipisicing elit. Assumenda, alias.</p>
+					</section>
+				</div>
+			</div>
+			<!-- !WORKS -->
+			<div id="works">
+				<h2 class="titleCenter">Selected Work</h2>
+				<section>
+					<button class="left">
+						<img src="img/work/left-arrow.svg" alt="">
+					</button>
+					<div class="middle">
+						<div>
+							<img src="img/work/img1.jpg" alt="">
+							<h3>Lorem, ipsum dolor.</h3>
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+						</div>
+						<div>
+							<img src="img/work/img2.jpg" alt="">
+							<h3>Lorem, ipsum dolor.</h3>
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+						</div>
+						<div>
+							<img src="img/work/img3.jpg" alt="">
+							<h3>Lorem, ipsum dolor.</h3>
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+						</div>
+						<div>
+							<img src="img/work/img4.jpg" alt="">
+							<h3>Lorem, ipsum dolor.</h3>
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+						</div>
+					</div>
+					<button class="right">
+						<img src="img/work/right-arrow.svg" alt="">
+					</button>
+				</section>
+			</div>
+			<!-- ! ABOUT -->
+			<div id="about">
+				<div class="top">
+					<h2 class="title">We <br> believe in passionate people</h2>
+					<a href="#">career<img src="./img/right-arrow.svg" alt=""></a>
+				</div>
+				<div class="bottom">
+					<section>
+						<img src="img/about/winners.jpg" alt="">
+						<span>Winners</span>
+					</section>
+					<section>
+						<img src="img/about/philosophy.jpg" alt="">
+						<span>Philosophy</span>
+					</section>
+					<section>
+						<img src="img/about/history.jpg" alt="">
+						<span>History</span>
+					</section>
+				</div>
+			</div>
+			<!-- ! CONTSACT -->
+			<div id="contact">
+				<h2 class="titleCenter">Contact</h2>
+				<div class="content">
+					<section>
+						<h3>Pawia 5,31-154 Krakow, Polanrd</h3>
+					<h4>ourmail@gmail.com</h4>
+					<h5>+48 12 628 76 21</h5>
+					<button>E-mail</button>
+					<button>Ring</button>
+					<button>Contact us</button>
+					</section>
+				</div>
+			</div>
+			<!-- !HIRE -->
+			<div id="hire">
+				<h2 class="titleCenter">you want us to do</h2>
+				<div class="content">
+					<div class="box">
+						<span value="1">App Design</span>
+						<span value="2">Graphic Design</span>
+						<span value="3">Motion Design</span>
+					</div>
+					<div class="box">
+						<span value="4">UX Design</span>
+						<span value="5">Webdesign</span>
+					</div>
+					<div class="box">
+						<span value="6">Marketing</span>
+					</div>
+					<form class="box">
+						<input type="text" placeholder="Name" id="senderName">
+						<input type="email" placeholder="Email" id="senderEmail">
+						<input type="submit" value="SEND REQUEST" id="submit">
+					</form>
+				</div>
+			</div>
+		</main>
+	</div>
+	<script src="js/script.min.js"></script>
+</body>
+
+</html>

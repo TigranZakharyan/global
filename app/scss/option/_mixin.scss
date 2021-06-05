@@ -1,0 +1,27 @@
+@mixin font($family, $size: 16px,$color: $black){
+    font: {
+        family: $family;
+        size: $size;
+    }
+    color: $color;
+}
+@mixin background($url){
+    background: {
+        image: url("#{$url}");
+        size: cover;
+        position: center;
+        repeat: no-repeat;
+    }
+}
+@mixin grid($col,$row){
+    display: grid;
+    grid-template-columns: $col;
+    grid-template-rows: $row;
+}
+@mixin animate($name: false){
+    animation: {
+        name: $name;
+        duration: 1.5s;
+        fill-mode: forwards;
+    }
+}

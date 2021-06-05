@@ -1,0 +1,12 @@
+@font-face {
+    font-family: "Archivo Black";
+    src: url("Archivo.eot"); /* IE9 */
+    src: url("Archivo.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
+    url("Archivo.woff") format("woff"), /* chrome, firefox */
+    url("Archivo.ttf") format("truetype"), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
+    url("Archivo.svg#Archivo Black") format("svg"); /* iOS 4.1- */
+    font-style: normal;
+    font-weight: normal;
+}
+
+
