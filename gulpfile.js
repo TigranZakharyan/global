@@ -6,7 +6,7 @@ const {
     parallel,
     series
 } = require('gulp'),
-    sass = require('gulp-sass'),
+    sass = require('gulp-sass')(require('sass')),
     rename = require('gulp-rename'),
     uglify = require('gulp-uglify-es').default,
     cleancss = require('gulp-clean-css'),
